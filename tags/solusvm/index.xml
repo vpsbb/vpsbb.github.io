@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Solusvm on VPSBB-小B资讯-外面的世界很精彩</title>
+    <link>https://vpsbb.com/tags/solusvm/</link>
+    <description>Recent content in Solusvm on VPSBB-小B资讯-外面的世界很精彩</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 03 Aug 2018 20:17:52 -0800</lastBuildDate>
+    
+	<atom:link href="https://vpsbb.com/tags/solusvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>KVM服务器使用solusvm开设openvz的nat小鸡全步骤教程</title>
+      <link>https://vpsbb.com/post/openvz/</link>
+      <pubDate>Fri, 03 Aug 2018 20:17:52 -0800</pubDate>
+      
+      <guid>https://vpsbb.com/post/openvz/</guid>
+      <description>&lt;p&gt;&amp;emsp;&amp;emsp;现在到处都是卖nat小鸡的网站，俗称oneman，就是一个人可以搞定一切IDC业务，对没错，我相信大家手里小鸡多的很，吃灰的也多，为什么不拿出来搞定nat小鸡娱乐一下，练习idc技术，顺便以后还能开设小鸡站赚钱，从此赢取白富美，走上人生巅峰。本文主要介绍solusvm开ovz小鸡的方法，以及nat网络的设置。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

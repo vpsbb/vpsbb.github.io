@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Appnode on VPSBB-小B资讯-外面的世界很精彩</title>
+    <link>https://vpsbb.com/tags/appnode/</link>
+    <description>Recent content in Appnode on VPSBB-小B资讯-外面的世界很精彩</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 20 Sep 2018 20:17:52 -0800</lastBuildDate>
+    
+	<atom:link href="https://vpsbb.com/tags/appnode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AppNode网站管理面板 快速安装和使用教程 安装whmcs</title>
+      <link>https://vpsbb.com/post/appnode/</link>
+      <pubDate>Thu, 20 Sep 2018 20:17:52 -0800</pubDate>
+      
+      <guid>https://vpsbb.com/post/appnode/</guid>
+      <description>&lt;p&gt;&amp;emsp;&amp;emsp;买了VPS想建站，安装各种运行程序麻烦，要安装nginx,php,mysql.各种配置文件也需要手动去找去配置,还好现在有各种vps管理面板都能帮我们解决问题，国内流行的免费面板就是BT宝塔面板和Appnode面板。前面宝塔面板大家接触的多，因为宝塔相对而言要简单些。appnode入门门槛相对较高，初次使用有很多不明白的地方，这篇文章就是从安装到使用教程。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

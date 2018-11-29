@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>谷歌云 on VPSBB-小B资讯-外面的世界很精彩</title>
+    <link>https://vpsbb.com/tags/%E8%B0%B7%E6%AD%8C%E4%BA%91/</link>
+    <description>Recent content in 谷歌云 on VPSBB-小B资讯-外面的世界很精彩</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 29 Jun 2018 12:17:52 -0800</lastBuildDate>
+    
+	<atom:link href="https://vpsbb.com/tags/%E8%B0%B7%E6%AD%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>『Google Cloud』300美刀谷歌云免费申请试用 安装实例教程</title>
+      <link>https://vpsbb.com/post/google-cloud/</link>
+      <pubDate>Fri, 29 Jun 2018 12:17:52 -0800</pubDate>
+      
+      <guid>https://vpsbb.com/post/google-cloud/</guid>
+      <description>&lt;p&gt;&amp;emsp;&amp;emsp;谷歌云，绑定信用卡就送300美刀，有效期1年。如果以最低配的服务器计算，可以每个月80G流量用一年，并且到期后如果不打算续费, 也不会额外收取费用，比较划算，而且谷歌云关闭实例后，重新开新实例会自动更换IP,加上谷歌自家的服务器网络，网速梭梭的，延迟少，大品牌值得信赖。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    
+    <meta name="generator" content="Hugo 0.50" />
+    <title>VPSBB-小B资讯-外面的世界很精彩</title>
+ 
+    
+    <meta name="description" content="KVM服务器使用solusvm开设openvz的nat小鸡教程" />
+    <meta name="keywords" content='solusvm,ovz小鸡,nat架设vps' />
+    
+        <link rel="icon" type="image/png" href="https://js.okwe.cn/vpsbb/favicon.ico" sizes="196x196" />
+    
+
+    
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://js.okwe.cn/vpsbb/css/prism.css">
+    <link rel="stylesheet" href="https://js.okwe.cn/vpsbb/css/style.css">
+    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    
+</head>
+
+    <body>
+        <div id="wrapall">
+        <div class="wrapcontent">
+        <nav id="wow-menu" class="navbar navbar-default is_stuck" >
+        <div class="container">
+            
+            <div class="navbar-header">
+                <a class="navbar-brand yahei" href="/">小B资讯</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+            </div>
+            
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul id="menu-main-nav" class="nav navbar-nav">
+                    <li class="current_page_item active"><a href="/">首页</a></li>
+                
+                    
+                           
+                        <li>
+                                <a href="/categories/%E4%BE%BF%E5%AE%9Cvps/">便宜VPS</a>
+                        </li>
+                          
+                        
+                    
+                        <li class="menu-item-has-children dropdown"><a href="/categories/vps%E6%95%99%E7%A8%8B/" class="dropdown-toggle" data-hover="dropdown"> VPS教程 <b class="caret"></b></a>
+
+                    <ul class="dropdown-menu" >
+                        
+                    <li><a href="/categories/%E5%BB%BA%E7%AB%99%E8%BF%90%E7%BB%B4/"> 建站运维</a></li>
+                        
+
+                    </ul>
+                        </li>
+
+                          
+                        
+                    
+                           
+                        <li>
+                                <a href="/categories/%E8%99%9A%E6%8B%9F%E4%BF%A1%E7%94%A8%E5%8D%A1/">虚拟信用卡</a>
+                        </li>
+                          
+                        
+                    
+                           
+                        <li>
+                                <a href="/page/about/">关于</a>
+                        </li>
+                          
+                        
+                </ul>
+
+            
+            </div>
+        </div>
+        </nav>
+
+
+        <div class="headertitle">
+            <div class="headercontent">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+
+                <div id="primary" class="content-area">
+                        <main id="main" class="site-main whiteboxed" role="main">
+                        <div class="wrapindexcerpt">
+                            <div class="contenttext">
+                                <div class="post-content">
+
+                                <h1 class="op-title yahei">KVM服务器使用solusvm开设openvz的nat小鸡全步骤教程</h1>
+
+                            
+                                  
+                                    <div class="wowmetaposts entry-meta">
+                                    <span class="wowmetadate"><i class="fa fa-clock-o"></i>2018/08/03</span>
+
+                                    <span class="wowmetacats"><i class="fa fa-folder-open"></i> <a href="/categories/%E5%BB%BA%E7%AB%99%E8%BF%90%E7%BB%B4/">建站运维</a></span>
+                                        
+                                        <i class="fa fa-tags"></i>
+                                        <span class="tagyun">
+                                         
+                                        <a href="/tags/solusvm/"rel="tag">solusvm</a>
+                                        
+                                        <a href="/tags/ovz%E5%B0%8F%E9%B8%A1/"rel="tag">ovz小鸡</a>
+                                        
+                                        <a href="/tags/nat%E6%9E%B6%E8%AE%BEvps/"rel="tag">nat架设vps</a>
+                                        
+                                        
+                                        </span>
+                                    
+                                    </div>
+                          
+
+       
+                                <p>&emsp;&emsp;现在到处都是卖nat小鸡的网站，俗称oneman，就是一个人可以搞定一切IDC业务，对没错，我相信大家手里小鸡多的很，吃灰的也多，为什么不拿出来搞定nat小鸡娱乐一下，练习idc技术，顺便以后还能开设小鸡站赚钱，从此赢取白富美，走上人生巅峰。本文主要介绍solusvm开ovz小鸡的方法，以及nat网络的设置。</p>
+
+<p></p>
+
+<p>&emsp;&emsp;实测512M的KVM鸡鸡也能开openvz小鸡。所有我相信不久的将来到处都是nat小鸡。</p>
+
+<h2 id="提前准备好必需品">提前准备好必需品</h2>
+
+<div class="alert alert-danger">
+  <ul>
+<li>KVM框架的小鸡，独服最好了。</li>
+<li>最干净的Centos6系统。6.6吧，我用的这个。</li>
+<li>基本的linux知识。</li>
+</ul>
+
+</div>
+
+<h2 id="开干-生小鸡">开干,生小鸡</h2>
+
+<p>首先准备好最干净的 <code class="language-bash">CentOs6</code> 系统。然后升级必备的系统文件。一个命令。等待完成。</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum update -y</code></pre></div>
+
+<p>然后安装 <code class="language-bash">wget</code> 。一个命令：</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install wget -y</code></pre></div>
+
+<p>好了，至此基本的都装好了，如果想装锐速或者换内核安装<code class="language-bash">bbr</code>.请等待我以后的教程。</p>
+
+<p>接着安装ovz vps的管理面板:solusvm .激活码去官网申请，一个月使用期，有开心版的，自己找。</p>
+
+<p>使用一下命令安装solusvm</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://files.soluslabs.com/install.sh
+sh install.sh</code></pre></div>
+
+<p>出现如下界面，等待时间较长，请耐心等待。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-d51d1e1966dc56de.png" alt="等待" /></p>
+
+<p></center></p>
+
+<p>然后出现如下界面，什么意思呢，我一个一个的解释。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-2ea947e9fc8e2743.png" alt="solusvm选择" /></p>
+
+<p></center></p>
+
+<div class="alert alert-warning" role="alert">
+  <ol>
+<li>1：管理面板只有UI。没有虚拟机。（适用于主控和受控分开装的情况）</li>
+<li>2：管理面板UI加ovz框架带系统模板（就是小鸡重装系统时可选的系统）。</li>
+<li>3：管理面板UI加ovz。（把面板和虚拟机装在一个vps里，一般选这个）</li>
+<li>4：安装KVM框架虚拟机。（杜甫才能选）</li>
+<li>5：安装XEN框架虚拟机。（杜甫才能选）</li>
+<li>6：安装openvz框架虚拟机。（适用于主控和受控分开装的情况）</li>
+</ol>
+
+</div>
+
+<p>我们当然选3了，把面板和ovz虚拟机都装到同一个vps上。然后等，等solusvm安装完成。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-661bb4db8c6424c0.png" alt="安装完成" /></p>
+
+<p></center></p>
+
+<p>安装完成后，会有一个提醒，就是告诉你，到<code class="language-bash">/boot/grub/grub.conf</code> 这个文件去看看，有没有把 <code class="language-bash">boot</code> 写进 <code class="language-bash">OpenVZ</code> 的<code class="language-bash">kernel</code>里。看到图片里的有openvz的那些数据了就行，然后重启服务器。
+命令：</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi /boot/grub/grub.conf</code></pre></div>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-3338d4ee94fbd648.png" alt="检查内核" /></p>
+
+<p></center></p>
+
+<p>退出文件，按 <code class="language-bash">esc</code> 键，键盘输入<code class="language-bash">：q</code></p>
+
+<p>然后重启</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">reboot</code></pre></div>
+
+<h2 id="solusvm开小鸡设置">solusvm开小鸡设置</h2>
+
+<p>首先用默认用户和密码登陆</p>
+
+<p>登陆地址是：</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">https://你的ip地址/admincp</code></pre></div>
+
+<p>填上激活码。什么英文看不懂，我靠不是吧，作为一个能开小鸡的人，且能看不懂英文，其实不用看的，很简单几个单词。照着我教程来就是了。</p>
+
+<p>复制激活码到这个框里。点SAVE（保存）</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-041bc36b07a8500f.png" alt="激活码" /></p>
+
+<p></center></p>
+
+<p>然后到 <code class="language-bash">Configuration</code> 的 <code class="language-bash">Administrators</code> ，修改默认密码。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-cb3a5ea0d39e14ea.png" alt="改密码" /></p>
+
+<p></center></p>
+
+<h3 id="node节点设置">node节点设置</h3>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-e27da84f1715da87.png" alt="节点设置" /></p>
+
+<p></center></p>
+
+<p>接着设置本机节点。照着点。还是把每个选项都解释下吧。</p>
+
+<ul>
+<li><font color=##22daec>Friendly Name</font> :随便取个名字如：vpsbb.com</li>
+<li><font color=##22daec>Type</font>:类型，这里必须选openvz。</li>
+<li><font color=##22daec>License Type</font>：照着图片选</li>
+<li><font color=##22daec>Host Operating System</font>：照着图片选，我们是centos6.</li>
+<li><font color=##22daec>IP Address</font>：就是填你VPS的ip地址。不要填8.8.8.8。</li>
+<li><font color=##22daec>Internal IP Address</font>：为了方便后面的nat设置，这里填写：10.0.1.1</li>
+<li><font color=##22daec>Hostname</font>:随便填，如：vpsbbcom</li>
+<li><font color=##22daec>Network Interface</font>：eth0</li>
+<li><font color=##22daec>arch</font>:选64位的。</li>
+<li><font color=##22daec>county</font>:vpsbb</li>
+<li><font color=##22daec>city</font>:vpsbb</li>
+<li><font color=##22daec>Max VPS</font>：就是你想开多少台小鸡。我这里开10台。</li>
+<li><font color=##22daec>Max Memory</font>：你的最大内存，可设置超过实际内存。超开。</li>
+<li><font color=##22daec>Max Disk</font>：你的最大硬盘，可设置超过实际硬盘。超开。</li>
+</ul>
+
+<p>勾选最下面两个。然后update node</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-5bf2eff0ed96d1b5.png" alt="参数上" /></p>
+
+<p></center></p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-04644323ed622a80.png" alt="参数下" /></p>
+
+<p></center></p>
+
+<h3 id="ip设置-nat">IP设置。nat</h3>
+
+<p>接着设置小鸡的内网IP。点IP Blocks 然后点Add IP Block。照着图片填。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-b3008871e09a8699.png" alt="内网ip" /></p>
+
+<p></center></p>
+
+<p>接着，照着图片上填，这是给内网小鸡们分配IP地址。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-ba08cd2739cbb5c1.png" alt="分配地址" /></p>
+
+<p></center></p>
+
+<h3 id="小鸡配置设置">小鸡配置设置</h3>
+
+<p>点 Plans 里的 Add OpenVZ Plan</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-0f34b72c1e2b1458.png" alt="销售计划" /></p>
+
+<p></center></p>
+
+<p>主要数据说明：</p>
+
+<div class="alert alert-info"> <ul>
+<li><font color=##22daec>Hdd Space</font>            ：小鸡鸡的硬盘大小。</li>
+<li><font color=##22daec>Guaranteed RAM </font>      ：小鸡鸡的内存大小。</li>
+<li><font color=##22daec>Burstable to RAM </font>    ：小鸡鸡能超频内存大小。</li>
+<li><font color=##22daec>Bandwidth</font>            ：每月流量。</li>
+<li><font color=##22daec>Network Speed</font>        ：网络限速。</li>
+</ul>
+ </div>
+
+<p>其他的小鸡cpu设定，比如分配多少核心啊，这些都按你喜欢的填。</p>
+
+<h3 id="添加操作系统">添加操作系统</h3>
+
+<p>到</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">https://openvz.org/Download/template/precreated/</code></pre></div>
+
+<p>去选择你喜欢的操作系统作为小鸡鸡的重装系统。把系统的下载地址复制下来。不需要解压。</p>
+
+<p>进入母鸡的 <code class="language-bash">/vz/template/cache</code> 这个文件目录下。
+命令是：</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">cd /vz/template/cache</code></pre></div>
+
+<p>然后下载系统，举个例子用命令：</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://download.openvz.org/template/precreated/debian-7.0-x86_64-minimal.tar.gz</code></pre></div>
+
+<h3 id="添加系统模板">添加系统模板</h3>
+
+<p>系统模板，主要是小鸡用户重装系统时的系统选择。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-7798feeca03b8fc0.png" alt="系统模板" /></p>
+
+<p></center></p>
+
+<h3 id="添加使用者clients">添加使用者clients</h3>
+
+<p>这就是添加小鸡的用户。我们这里添加一个用户名为vpsbbcom的用户。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-16d75d68c3b443fb.png" alt="添加用户" /></p>
+
+<p></center></p>
+
+<h3 id="添加小鸡鸡-ovz虚拟机">添加小鸡鸡（OVZ虚拟机）</h3>
+
+<p>IP Address：给小鸡分配内网ip.我这里把10.0.1.2给了这个小鸡。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-3c30e910028c54d2.png" alt="添加ovz" /></p>
+
+<p></center></p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-71914e68b7a9ca56.png" alt="添加ovz1" /></p>
+
+<p></center></p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-8e25e6d01fbc3fdd.png" alt="添加ovz2" /></p>
+
+<p></center></p>
+
+<h2 id="nat网络设置">nat网络设置</h2>
+
+<p>nat网络首先要做的第一件事就是：</p>
+
+<div class="alert alert-info"> <ul>
+<li>修改文件 <code class="language-bash">vi /etc/modprobe.d/openvz.conf</code> 将最后 <code class="language-bash">=1</code> 改为 <code class="language-bash">=0</code> ，保存退出。</li>
+<li>重启系统 <code class="language-bash">reboot</code></li>
+<li>使用 <code class="language-bash">iptables -t nat -L</code> 检查，如下代码，说明设置正确。</li>
+</ul>
+ </div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">Chain PREROUTING <span style="color:#f92672">(</span>policy ACCEPT<span style="color:#f92672">)</span>
+target     prot opt source               destination         
+
+Chain POSTROUTING <span style="color:#f92672">(</span>policy ACCEPT<span style="color:#f92672">)</span>
+target     prot opt source               destination         
+
+Chain OUTPUT <span style="color:#f92672">(</span>policy ACCEPT<span style="color:#f92672">)</span>
+target     prot opt source               destination  </code></pre></div>
+
+<h3 id="内网端口转发">内网端口转发</h3>
+
+<p>内网端口转发。我们要用到一个脚本文件，批量添加端口内网转发。</p>
+
+<p>脚本下载地址：</p>
+
+<p><a href="https://cdn.jsdelivr.net/gh/vpsbb/ovz@1.0/addnat.sh/">点击下载addnat.sh</a></p>
+
+<p>本脚本在使用时，要根据你母鸡的网卡名，进行参数修改。</p>
+
+<p>在母鸡上用命令查看网卡信息：</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">ifconfig</code></pre></div>
+
+<p>如图，找到有你母鸡IP地址那段，开头的网卡名称是多少，记下来，addnat里要相应修改为你的网卡名称。见图。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-736cec67f6cdc03e.png" alt="母鸡网卡" /></p>
+
+<p></center></p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-103daf246b8c8cd6.png" alt="修改网卡" /></p>
+
+<p></center></p>
+
+<p>修改完成后，上传到母鸡root目录下。如图。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-6392ffea30cb796b.png" alt="上传" /></p>
+
+<p></center></p>
+
+<p>或者可以直接下载到母鸡上，再修改。命令：</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://cdn.jsdelivr.net/gh/vpsbb/ovz@1.0/addnat.sh</code></pre></div>
+
+<p>然后一个命令，执行脚本。</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">bash addnat.sh</code></pre></div>
+
+<p>第一个地方填你母鸡的公网IP。</p>
+
+<p>第二个地方一般填1.也就是一个段的内网ip。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-75e52ed4faa0e076.png" alt="net设置" /></p>
+
+<p></center></p>
+
+<p>命令检查是否分配好内网端口。</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">iptables -t nat -L</code></pre></div>
+
+<h3 id="nat内网分配规则解释">NAT内网分配规则解释</h3>
+
+<p>这个脚本规则是这样的，当然你可以修改脚本达到自己想要的效果。</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">前面我们设置的小鸡网段是10.0.1.0到10.0.1.254。
+
+那么基础规则是 <span style="color:#ae81ff">10</span>.0.C.D 的内网IP（此例子C为1，D最多是3位数）
+SSH端口是 61D（D不足3为前面补0）
+可用端口是 1D1 - 1D9（D不足3为前面补0）
+
+具体案例： <span style="color:#ae81ff">10</span>.0.1.88
+SSH端口是 <span style="color:#ae81ff">61088</span>
+可用端口是 <span style="color:#ae81ff">10881</span> - <span style="color:#ae81ff">10889</span>
+
+案例二： <span style="color:#ae81ff">10</span>.0.1.2
+SSH端口是 <span style="color:#ae81ff">61002</span>
+可用端口是 <span style="color:#ae81ff">10021</span> - <span style="color:#ae81ff">10029</span></code></pre></div>
+
+<h2 id="修改小鸡root密码登陆小鸡">修改小鸡root密码登陆小鸡</h2>
+
+<p>如图，到用户管理界面，进入用户区，然后修改root密码，或者重装系统。</p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-b34d23d008de32db.png" alt="进入ovz" /></p>
+
+<p></center></p>
+
+<p><center></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/9336252-a8a32485dbb48d1c.png" alt="修改密码" /></p>
+
+<p></center></p>
+
+<h3 id="solusvm-和-whmcs对接">solusvm 和 WHMCS对接</h3>
+
+<p>尽情期待以后的教程。</p>
+
+                                <p>转载请注明：
+                                    <a href="https://vpsbb.com" data-original-title="" title="">VPSBB</a> » <a href="/post/openvz/" data-original-title="" title="">KVM服务器使用solusvm开设openvz的nat小鸡全步骤教程</a>
+                                </p>
+
+                                </div>
+                                <div class="clearfix">
+                                </div>
+                            </div>
+                        </div>
+                        
+                
+                            
+                        </main>
+                        
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div id="secondary" class="widget-area q2w3-fixed-widget-container" role="complementary">
+
+                    					<aside class="widget widget_search">
+						<form role="search" method="get" accept-charset="UTF-8" class="search-form" action="//google.com/search">
+
+							<input type="search" class="search-field" placeholder="谷歌搜索本站..." value="" name="q" title="">
+							<input type="hidden" name="q" value="site:https://vpsbb.com/">
+						</form>
+						</aside>
+
+
+
+                    
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="lambadacalltoaction" class="actionbeforefooter text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					 Welcome to join my telegram group. <a target="_blank" class="actionbutton" href="https://t.me/joinchat/I6qMLRHGxEsFDsumbkgAEA"><i class="fa fa-send-o"></i> telegram </a>
+				</div>
+			</div>
+		</div>
+	</div>
+        <div class="sectioncredits">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="credits-left fleft">
+                    2018 © All Rights Reserved, Vpsbb.com </span>
+                        
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+</div>
+        <div id="back-to-top" class="hidden">
+    <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+        <i class="glyphicon glyphicon-chevron-up"></i>Top</a>
+</div>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.12.4/jquery.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script src="https://js.okwe.cn/vpsbb/js/prism.js"></script>
+<script src="https://js.okwe.cn/vpsbb/js/carousel.js"></script>
+<script src="https://js.okwe.cn/vpsbb/js/init.js"></script>
+<script src="https://js.okwe.cn/vpsbb/js/masonry.js"></script>
+<script>
+    if(($(window).height() + 100) < $(document).height()) {
+        $('#back-to-top').removeClass('hidden').affix({
+            offset: {
+                top: 100
+            }
+        });
+    }
+</script>
+
+    </div>
+    </body>
+</html>
+
